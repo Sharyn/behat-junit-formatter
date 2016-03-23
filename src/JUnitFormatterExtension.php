@@ -17,6 +17,7 @@ class JUnitFormatterExtension implements ExtensionInterface
 {
     const ENV_FILENAME = 'JARNAIZ_JUNIT_FILENAME';
     const ENV_OUTPUTDIR = 'JARNAIZ_JUNIT_OUTPUTDIR';
+    const ENV_SUITE_NAME_PREFIX = 'JARNAIZ_JUNIT_SUITE_NAME_PREFIX';
 
     /**
      * process
@@ -55,6 +56,7 @@ class JUnitFormatterExtension implements ExtensionInterface
     {
         $builder->children()->scalarNode('filename')->defaultValue('test_report.xml');
         $builder->children()->scalarNode('outputDir')->defaultValue('build/tests');
+        $builder->children()->scalarNode('suiteNamePrefix')->defaultValue('');
     }
 
     /**
@@ -75,8 +77,13 @@ class JUnitFormatterExtension implements ExtensionInterface
             $outputDir = $config['outputDir'];
         }
 
+        if (!$suiteNamePrefix = \getenv(self::ENV_SUITE_NAME_PREFIX)) {
+            $suiteNamePrefix = $config['suiteNamePrefix'];
+        }
+
         $definition->addArgument($filename);
         $definition->addArgument($outputDir);
+        $definition->addArgument($suiteNamePrefix);
 
         $container->setDefinition('junit.formatter', $definition)
             ->addTag('output.formatter');

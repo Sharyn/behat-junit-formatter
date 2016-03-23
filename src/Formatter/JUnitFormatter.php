@@ -70,15 +70,18 @@ class JUnitFormatter implements Formatter
      */
     private $currentOutlineTitle;
 
+    private $suiteNamePrefix;
+
     /**
      * __construct
      *
      * @param mixed $filename
      * @param mixed $outputDir
      */
-    public function __construct($filename, $outputDir)
+    public function __construct($filename, $outputDir, $suiteNamePrefix)
     {
         $this->printer        = new FileOutputPrinter($filename, $outputDir);
+        $this->suiteNamePrefix = $suiteNamePrefix;
         $this->testsuiteTimer = new Timer();
         $this->testcaseTimer  = new Timer();
     }
@@ -164,7 +167,7 @@ class JUnitFormatter implements Formatter
         $suite = $event->getSuite();
 
         $testsuite = $this->xml->addChild('testsuite');
-        $testsuite->addAttribute('name', $suite->getName());
+        $testsuite->addAttribute('name', $this->suiteNamePrefix  . $suite->getName());
         $testsuite->addAttribute('tests', 0);
     }
 
@@ -178,7 +181,7 @@ class JUnitFormatter implements Formatter
         $feature = $event->getFeature();
 
         $this->currentTestsuite = $testsuite = $this->xml->addChild('testsuite');
-        $testsuite->addAttribute('name', $feature->getTitle());
+        $testsuite->addAttribute('name', $this->suiteNamePrefix . $feature->getTitle());
 
         $this->testsuiteStats =  array(
             TestResult::PASSED    => 0,
@@ -201,7 +204,7 @@ class JUnitFormatter implements Formatter
     public function beforeScenario(ScenarioTested $event)
     {
         $this->currentTestcase = $this->currentTestsuite->addChild('testcase');
-        $this->currentTestcase->addAttribute('name', $event->getScenario()->getTitle());
+        $this->currentTestcase->addAttribute('name', $this->suiteNamePrefix . $event->getScenario()->getTitle());
 
         $this->testcaseTimer->start();
     }
