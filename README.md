@@ -10,7 +10,7 @@ This extension requires:
 #### Install with composer:
 
 ```bash
-$ composer require --dev jarnaiz/behat-junit-formatter
+$ composer require --dev sharyn/behat-junit-formatter
 ```
 
 ## Basic usage
@@ -24,7 +24,7 @@ default:
     ...
 
     extensions:
-        jarnaiz\JUnitFormatter\JUnitFormatterExtension:
+        sharyn\JUnitFormatter\JUnitFormatterExtension:
             filename: report.xml
             outputDir: %paths.base%/build/tests
     ...
@@ -39,7 +39,7 @@ behat -f junit
 * `filename` - filename
 * `outputDir` - dir to be created filename
 
-you also could use JARNAIZ_JUNIT_FILENAME and JARNAIZ_JUNIT_OUTPUTDIR env variables
+you also could use SHARYN_JUNIT_FILENAME and SHARYN_JUNIT_OUTPUTDIR env variables
 
 ## Issue Submission
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace jarnaiz\JUnitFormatter;
+namespace sharyn\JUnitFormatter;
 
 use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
 use Behat\Testwork\ServiceContainer\ExtensionManager;
@@ -15,9 +15,9 @@ use Symfony\Component\DependencyInjection\Definition;
  */
 class JUnitFormatterExtension implements ExtensionInterface
 {
-    const ENV_FILENAME = 'JARNAIZ_JUNIT_FILENAME';
-    const ENV_OUTPUTDIR = 'JARNAIZ_JUNIT_OUTPUTDIR';
-    const ENV_SUITE_NAME_PREFIX = 'JARNAIZ_JUNIT_SUITE_NAME_PREFIX';
+    const ENV_FILENAME = 'SHARYN_JUNIT_FILENAME';
+    const ENV_OUTPUTDIR = 'SHARYN_JUNIT_OUTPUTDIR';
+    const ENV_SUITE_NAME_PREFIX = 'SHARYN_JUNIT_SUITE_NAME_PREFIX';
 
     /**
      * process
@@ -35,7 +35,7 @@ class JUnitFormatterExtension implements ExtensionInterface
      */
     public function getConfigKey()
     {
-        return "jarnaizjunit";
+        return "sharynjunit";
     }
 
     /**
@@ -67,7 +67,7 @@ class JUnitFormatterExtension implements ExtensionInterface
      */
     public function load(ContainerBuilder $container, array $config)
     {
-        $definition = new Definition('jarnaiz\\JUnitFormatter\\Formatter\\JUnitFormatter');
+        $definition = new Definition('sharyn\\JUnitFormatter\\Formatter\\JUnitFormatter');
 
         if (!$filename = \getenv(self::ENV_FILENAME)) {
             $filename = $config['filename'];

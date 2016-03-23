@@ -1,6 +1,6 @@
 <?php
 
-namespace jarnaiz\JUnitFormatter\Formatter;
+namespace sharyn\JUnitFormatter\Formatter;
 
 use Behat\Behat\Tester\Result\StepResult as TestResult;
 use Behat\Behat\EventDispatcher\Event\FeatureTested;
@@ -12,7 +12,7 @@ use Behat\Testwork\EventDispatcher\Event\SuiteTested;
 use Behat\Testwork\EventDispatcher\Event\ExerciseCompleted;
 use Behat\Testwork\Output\Formatter;
 use Behat\Testwork\Counter\Timer;
-use jarnaiz\JUnitFormatter\Printer\FileOutputPrinter;
+use sharyn\JUnitFormatter\Printer\FileOutputPrinter;
 
 /**
  * Class: JUnitFormatter

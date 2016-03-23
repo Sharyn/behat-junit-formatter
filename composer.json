@@ -1,5 +1,5 @@
 {
-    "name": "jarnaiz/behat-junit-formatter",
+    "name": "sharyn/behat-junit-formatter",
     "description": "Behat 3 JUnit xml formatter",
     "authors": [
         {
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "jarnaiz\\JUnitFormatter\\": "src/"
+            "sharyn\\JUnitFormatter\\": "src/"
         }
     },
     "extra": {
