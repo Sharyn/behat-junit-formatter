@@ -129,7 +129,12 @@ class FileOutputPrinter implements PrinterInterface
      */
     public function write($messages, $append = false)
     {
-        $file = $this->getOutputPath() . DIRECTORY_SEPARATOR . $this->filename;
+        $i = 1;
+        $file = $this->getOutputPath() . DIRECTORY_SEPARATOR . $i . '_' . $this->filename;
+        while(file_exists($file)){
+            $i++;
+            $file = $this->getOutputPath() . DIRECTORY_SEPARATOR . $i . '_' . $this->filename;
+        }
 
         if ($append) {
             file_put_contents($file, $messages, FILE_APPEND);
